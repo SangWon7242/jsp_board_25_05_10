@@ -14,6 +14,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.1.0")
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly("org.projectlombok:lombok:1.18.36")
+    annotationProcessor("org.projectlombok:lombok:1.18.36")
 }
 
 tasks.test {

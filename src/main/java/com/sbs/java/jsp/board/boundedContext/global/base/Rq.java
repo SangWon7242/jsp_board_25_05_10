@@ -1,5 +1,7 @@
 package com.sbs.java.jsp.board.boundedContext.global.base;
 
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -48,6 +50,25 @@ public class Rq {
     try {
       resp.getWriter().append(str);
     } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public Object getAttr(String name) {
+    return req.getAttribute(name);
+  }
+
+  public void setAttr(String name, Object value) {
+    req.setAttribute(name, value);
+  }
+
+  public void view(String path) {
+    RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/" + path + ".jsp");
+    // /jsp/usr/article/list.jsp
+
+    try {
+      requestDispatcher.forward(req, resp);
+    } catch (ServletException | IOException e) {
       throw new RuntimeException(e);
     }
   }
