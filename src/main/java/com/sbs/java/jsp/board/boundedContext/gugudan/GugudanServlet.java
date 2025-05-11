@@ -1,6 +1,7 @@
 package com.sbs.java.jsp.board.boundedContext.gugudan;
 
 import com.sbs.java.jsp.board.boundedContext.global.base.Rq;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,18 +18,14 @@ public class GugudanServlet extends HttpServlet {
 
     int dan = rq.getIntParam("dan", 9);
     int limit = rq.getIntParam("limit", 9);
-    rq.appendBody("<h1>== 구구단 %d단 ==</h1>\n".formatted(dan));
 
-    for(int i = 1; i <= limit; i++) {
-      rq.appendBody("<div>%d * %d = %d</div>\n".formatted(dan, i, dan * i));
-    }
+    // setAttribute : key, value 형태로 인자값을 넘김
+    // request에 정보를 담음
+    req.setAttribute("dan", dan);
+    req.setAttribute("limit", limit);
 
-    rq.appendBody("""
-        <div class="box-1"></div>
-        
-        <style>
-          .box-1 { width:200px; height:200px; background-color: red; }
-        </style>
-        """);
+    // JSP한테 요청을 보냄
+    RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/gugudan2.jsp");
+    requestDispatcher.forward(req, resp);
   }
 }
