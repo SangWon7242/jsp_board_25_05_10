@@ -4,6 +4,7 @@ import com.sbs.java.jsp.board.boundedContext.article.dto.Article;
 import com.sbs.java.jsp.board.boundedContext.global.base.Rq;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.LongStream;
 
@@ -23,6 +24,7 @@ public class ArticleController {
 
   public void showList(Rq rq) {
     List<Article> articles = articleList;
+    Collections.reverse(articles);
 
     rq.setAttr("articles", articles);
 
