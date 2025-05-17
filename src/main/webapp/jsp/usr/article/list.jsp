@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <style>
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+
   /* 전체 컨테이너 스타일 */
   .container {
     max-width: 1200px;
@@ -68,6 +74,11 @@
     font-weight: 500;
   }
 
+  .article-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+
   /* 반응형 디자인 */
   @media (max-width: 768px) {
     .container {
@@ -99,7 +110,9 @@
       <c:forEach var="article" items="${articles}" varStatus="status">
         <tr>
           <td>${article.id}</td>
-          <td>${article.subject}</td>
+          <td>
+            <a href="detail?id=${article.id}" class="article-link">${article.subject}</a>
+          </td>
         </tr>
       </c:forEach>
       </tbody>

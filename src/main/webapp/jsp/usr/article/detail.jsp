@@ -95,7 +95,7 @@
   </div>
 
   <div class="button-group">
-    <a href="/usr/article/list" class="btn btn-list">목록</a>
+    <a href="list" class="btn btn-list">목록</a>
   </div>
 </div>
 
