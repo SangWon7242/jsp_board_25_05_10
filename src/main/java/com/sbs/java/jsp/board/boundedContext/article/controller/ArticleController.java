@@ -10,11 +10,13 @@ import java.util.stream.LongStream;
 
 public class ArticleController {
   private List<Article> articleList;
+  private long lastId;
 
   public ArticleController() {
     articleList = new ArrayList<>();
-
     makeTestData();
+
+    lastId = articleList.get(articleList.size() - 1).getId();
   }
 
   void makeTestData() {
@@ -24,7 +26,6 @@ public class ArticleController {
 
   public void showList(Rq rq) {
     List<Article> articles = articleList;
-    Collections.reverse(articles);
 
     rq.setAttr("articles", articles);
 
@@ -33,5 +34,40 @@ public class ArticleController {
 
   public void showWrite(Rq rq) {
     rq.view("usr/article/write");
+  }
+
+  public void doWrite(Rq rq) {
+    String subject = rq.getParam("subject", "");
+
+    if(subject.trim().isEmpty()) {
+      rq.appendBody("""
+                    <script>
+                      alert("제목을 입력해주세요.");
+                    </script>
+                    """);
+      return;
+    }
+
+    String content = rq.getParam("content", "");
+
+    if(content.trim().isEmpty()) {
+      rq.appendBody("""
+                    <script>
+                      alert("내용을 입력해주세요.");
+                    </script>
+                    """);
+      return;
+    }
+
+    long id = ++lastId;
+
+    Article article = new Article(id, subject, content);
+    articleList.add(article);
+
+    rq.appendBody("""
+        <div>%d번 게시물 생성</div>
+        <div>subject : %s</div>
+        <div>content : %s</div>
+        """.formatted(article.getId(), subject, content));
   }
 }

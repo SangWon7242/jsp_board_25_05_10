@@ -107,7 +107,7 @@
 <div class="container">
   <h2>게시물 작성</h2>
 
-  <form onsubmit="ArticleSave_submitFrom(this); return false;">
+  <form method="POST" onsubmit="ArticleSave_submitFrom(this); return false;">
     <div class="form-group">
       <label for="subject">제목</label>
       <input type="text"
