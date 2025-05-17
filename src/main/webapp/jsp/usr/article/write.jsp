@@ -81,11 +81,33 @@
   }
 </style>
 
+<script>
+  function ArticleSave_submitFrom(form) {
+    form.subject.value = form.subject.value.trim();
+
+    if(form.subject.value.length == 0) {
+      alert("제목을 입력해주세요");
+      form.subject.focus();
+      return;
+    }
+
+    form.content.value = form.content.value.trim();
+
+    if(form.content.value.length == 0) {
+      alert("내용을 입력해주세요");
+      form.content.focus();
+      return;
+    }
+
+    form.submit();
+  }
+</script>
+
 
 <div class="container">
   <h2>게시물 작성</h2>
 
-  <form>
+  <form onsubmit="ArticleSave_submitFrom(this); return false;">
     <div class="form-group">
       <label for="subject">제목</label>
       <input type="text"
