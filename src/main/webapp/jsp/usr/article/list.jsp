@@ -111,7 +111,7 @@
         <tr>
           <td>${article.id}</td>
           <td>
-            <a href="detail?id=${article.id}" class="article-link">${article.subject}</a>
+            <a href="detail/free/${article.id}" class="article-link">${article.subject}</a>
           </td>
         </tr>
       </c:forEach>
