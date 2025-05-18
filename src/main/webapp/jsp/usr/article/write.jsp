@@ -5,17 +5,10 @@
 <%@ include file="../../common/head.jspf" %>
 
 <style>
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-  }
-
   .container {
-      width: 80%;
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
   }
 
   h2 {
