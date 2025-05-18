@@ -88,4 +88,26 @@ public class ArticleController {
 
     rq.view("usr/article/modify");
   }
+
+  public void doModify(Rq rq) {
+    long id = rq.getLongPathValueByIndex(1, 0);
+
+    String subject = rq.getParam("subject", "");
+
+    if(subject.trim().isEmpty()) {
+      rq.replace("제목을 입력해주세요.", "/usr/article/write");
+      return;
+    }
+
+    String content = rq.getParam("content", "");
+
+    if(content.trim().isEmpty()) {
+      rq.replace("내용을 입력해주세요.", "/usr/article/write");
+      return;
+    }
+
+    articleService.modify(id, subject, content);
+
+    rq.replace("%d번 게시물 수정되었습니다.".formatted(id), "/usr/article/detail/free/%d".formatted(id));
+  }
 }

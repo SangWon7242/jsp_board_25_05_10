@@ -58,7 +58,7 @@
     </div>
 
     <div class="flex gap-4">
-      <button type="submit" class="btn btn-primary flex-1">게시물 등록</button>
+      <button type="submit" class="btn btn-primary flex-1">게시물 수정</button>
       <button type="button" class="btn btn-error flex-1" onclick="history.back()">취소</button>
     </div>
   </form>
