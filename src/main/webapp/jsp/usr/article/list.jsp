@@ -1,125 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- Jakarta EE 9+ 새로운 방식 -->
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <%@ include file="../../common/head.jspf" %>
 
-<style>
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">게시물 리스트</h1>
+    <a href="/usr/article/write" class="btn btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+      </svg>
+      글쓰기
+    </a>
+  </div>
 
-
-  /* 전체 컨테이너 스타일 */
-  .container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-
-  /* 제목 스타일 */
-  .page-title {
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #f0f0f0;
-  }
-
-  /* 테이블 컨테이너 스타일 */
-  .article-list-box {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-
-  /* 테이블 기본 스타일 */
-  .article-list {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  /* 테이블 헤더 스타일 */
-  .article-list thead th {
-    background-color: #f8f9fa;
-    color: #495057;
-    padding: 1rem;
-    font-weight: 600;
-    text-align: left;
-    border-bottom: 2px solid #dee2e6;
-  }
-
-  /* 테이블 셀 스타일 */
-  .article-list td {
-    padding: 1rem;
-    border-bottom: 1px solid #dee2e6;
-    color: #212529;
-  }
-
-  /* 테이블 행 호버 효과 */
-  .article-list tbody tr:hover {
-    background-color: #f8f9fa;
-    transition: background-color 0.2s ease;
-  }
-
-  /* 번호 열 스타일 */
-  .article-list td:first-child {
-    width: 100px;
-    text-align: center;
-    color: #6c757d;
-  }
-
-  /* 내용 열 스타일 */
-  .article-list td:nth-child(2) {
-    font-weight: 500;
-  }
-
-  .article-link:hover {
-    color: #007bff;
-    text-decoration: underline;
-  }
-
-  /* 반응형 디자인 */
-  @media (max-width: 768px) {
-    .container {
-      padding: 0 0.5rem;
-    }
-
-    .page-title {
-      font-size: 1.5rem;
-    }
-
-    .article-list td,
-    .article-list th {
-      padding: 0.75rem;
-    }
-  }
-</style>
-
-<div class="container">
-  <h1 class="page-title">게시물 리스트</h1>
-  <nav class="article-list-box">
-    <table class="article-list">
-      <thead>
-      <tr>
-        <th>번호</th>
-        <th>내용</th>
-      </tr>
-      </thead>
-      <tbody>
-      <c:forEach var="article" items="${articles}" varStatus="status">
+  <div class="card bg-base-100 shadow-xl">
+    <div class="overflow-x-auto">
+      <table class="table table-zebra w-full">
+        <!-- 테이블 헤더 -->
+        <thead>
         <tr>
-          <td>${article.id}</td>
-          <td>
-            <a href="detail/free/${article.id}" class="article-link">${article.subject}</a>
-          </td>
+          <th class="w-24 text-center">번호</th>
+          <th>제목</th>
         </tr>
-      </c:forEach>
-      </tbody>
-    </table>
-  </nav>
+        </thead>
+        <!-- 테이블 본문 -->
+        <tbody>
+        <c:forEach var="article" items="${articles}" varStatus="status">
+          <tr class="hover">
+            <td class="text-center">${article.id}</td>
+            <td>
+              <a href="detail/free/${article.id}"
+                 class="hover:text-primary transition-colors duration-200 block">
+                ${article.subject}
+              </a>
+            </td>
+          </tr>
+        </c:forEach>
+
+        <c:if test="${empty articles}">
+          <tr>
+            <td colspan="3" class="text-center py-8 text-gray-500">
+              게시물이 없습니다
+            </td>
+          </tr>
+        </c:if>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <%@ include file="../../common/foot.jspf" %>

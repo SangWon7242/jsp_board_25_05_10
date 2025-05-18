@@ -4,78 +4,6 @@
 
 <%@ include file="../../common/head.jspf" %>
 
-<style>
-  .container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-
-  h2 {
-      margin-bottom: 20px;
-      color: #333;
-  }
-
-  .form-group {
-      margin-bottom: 20px;
-  }
-
-  .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-  }
-
-  .form-group input[type="text"],
-  .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-  }
-
-  .form-group input[type="text"] {
-      height: 40px;
-  }
-
-  .form-group textarea {
-      height: 300px;
-      resize: vertical;
-  }
-
-  .button-group {
-      margin-top: 20px;
-  }
-
-  .button-group button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-right: 10px;
-  }
-
-  .submit-btn {
-      background-color: #4CAF50;
-      color: white;
-  }
-
-  .submit-btn:hover {
-      background-color: #45a049;
-  }
-
-  .cancel-btn {
-      background-color: #f44336;
-      color: white;
-  }
-
-  .cancel-btn:hover {
-      background-color: #da190b;
-  }
-</style>
-
 <script>
   function ArticleSave_submitFrom(form) {
     form.subject.value = form.subject.value.trim();
@@ -99,30 +27,36 @@
 </script>
 
 
-<div class="container">
-  <h2>게시물 작성</h2>
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <h2 class="text-3xl font-bold mb-8 text-gray-800">게시물 작성</h2>
 
-  <form method="POST" onsubmit="ArticleSave_submitFrom(this); return false;">
-    <div class="form-group">
-      <label for="subject">제목</label>
+  <form method="POST" onsubmit="ArticleSave_submitFrom(this); return false;" class="card bg-base-100 shadow-xl p-6">
+    <div class="form-control w-full mb-6">
+      <label class="label">
+        <span class="label-text text-lg font-semibold">제목</span>
+      </label>
       <input type="text"
              id="subject"
              name="subject"
              placeholder="제목을 입력해주세요"
+             class="input input-bordered w-full"
              required>
     </div>
 
-    <div class="form-group">
-      <label for="content">내용</label>
+    <div class="form-control w-full mb-6 flex flex-col">
+      <label class="label">
+        <span class="label-text text-lg font-semibold">내용</span>
+      </label>
       <textarea id="content"
                 name="content"
                 placeholder="내용을 입력해주세요"
+                class="textarea textarea-bordered h-64 w-full"
                 required></textarea>
     </div>
 
-    <div class="button-group">
-      <button type="submit" class="submit-btn">게시물 등록</button>
-      <button type="button" class="cancel-btn" onclick="history.back()">취소</button>
+    <div class="flex gap-4">
+      <button type="submit" class="btn btn-primary flex-1">게시물 등록</button>
+      <button type="button" class="btn btn-error flex-1" onclick="history.back()">취소</button>
     </div>
   </form>
 </div>
