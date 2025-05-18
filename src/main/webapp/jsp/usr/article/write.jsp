@@ -2,6 +2,8 @@
 <!-- Jakarta EE 9+ 새로운 방식 -->
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
+<%@ include file="../../common/head.jspf" %>
+
 <style>
   * {
       margin: 0;
@@ -131,3 +133,5 @@
     </div>
   </form>
 </div>
+
+<%@ include file="../../common/foot.jspf" %>
