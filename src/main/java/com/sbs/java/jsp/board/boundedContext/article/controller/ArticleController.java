@@ -17,7 +17,7 @@ public class ArticleController {
   public void showList(Rq rq) {
     List<Article> articles = articleService.findAll();
 
-    if(articles.isEmpty()) {
+    if (articles.isEmpty()) {
       rq.replace("게시물이 존재하지 않습니다.", "/");
     }
 
@@ -33,14 +33,14 @@ public class ArticleController {
   public void doWrite(Rq rq) {
     String subject = rq.getParam("subject", "");
 
-    if(subject.trim().isEmpty()) {
+    if (subject.trim().isEmpty()) {
       rq.replace("제목을 입력해주세요.", "/usr/article/write");
       return;
     }
 
     String content = rq.getParam("content", "");
 
-    if(content.trim().isEmpty()) {
+    if (content.trim().isEmpty()) {
       rq.replace("내용을 입력해주세요.", "/usr/article/write");
       return;
     }
@@ -53,14 +53,14 @@ public class ArticleController {
   public void showDetail(Rq rq) {
     long id = rq.getLongPathValueByIndex(1, 0);
 
-    if(id == 0) {
+    if (id == 0) {
       rq.historyBack("올바른 요청이 아닙니다.");
       return;
     }
 
     Article article = articleService.findById(id);
 
-    if(article == null) {
+    if (article == null) {
       rq.replace("%d번 게시물이 존재하지 않습니다.".formatted(id), "/usr/article/list");
       return;
     }
@@ -72,14 +72,14 @@ public class ArticleController {
   public void showModify(Rq rq) {
     long id = rq.getLongPathValueByIndex(1, 0);
 
-    if(id == 0) {
+    if (id == 0) {
       rq.historyBack("올바른 요청이 아닙니다.");
       return;
     }
 
     Article article = articleService.findById(id);
 
-    if(article == null) {
+    if (article == null) {
       rq.replace("%d번 게시물이 존재하지 않습니다.".formatted(id), "/usr/article/list");
       return;
     }
@@ -94,14 +94,14 @@ public class ArticleController {
 
     String subject = rq.getParam("subject", "");
 
-    if(subject.trim().isEmpty()) {
+    if (subject.trim().isEmpty()) {
       rq.replace("제목을 입력해주세요.", "/usr/article/write");
       return;
     }
 
     String content = rq.getParam("content", "");
 
-    if(content.trim().isEmpty()) {
+    if (content.trim().isEmpty()) {
       rq.replace("내용을 입력해주세요.", "/usr/article/write");
       return;
     }
@@ -109,5 +109,25 @@ public class ArticleController {
     articleService.modify(id, subject, content);
 
     rq.replace("%d번 게시물 수정되었습니다.".formatted(id), "/usr/article/detail/free/%d".formatted(id));
+  }
+
+  public void doDelete(Rq rq) {
+    long id = rq.getLongPathValueByIndex(1, 0);
+
+    if (id == 0) {
+      rq.historyBack("올바른 요청이 아닙니다.");
+      return;
+    }
+
+    Article article = articleService.findById(id);
+
+    if (article == null) {
+      rq.replace("%d번 게시물이 존재하지 않습니다.".formatted(id), "/usr/article/list");
+      return;
+    }
+
+    articleService.delete(id);
+
+    rq.replace("%d번 게시물이 삭제되었습니다.".formatted(id), "/usr/article/list");
   }
 }

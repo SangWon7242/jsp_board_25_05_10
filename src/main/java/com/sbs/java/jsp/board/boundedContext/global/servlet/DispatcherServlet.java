@@ -16,6 +16,20 @@ import java.io.IOException;
 public class DispatcherServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    handleRequest(req, resp);
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    handleRequest(req, resp);
+  }
+
+  @Override
+  protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    handleRequest(req, resp);
+  }
+
+  private void handleRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     Rq rq = new Rq(req, resp);
 
     MemberController memberController = Container.memberController;
@@ -28,18 +42,16 @@ public class DispatcherServlet extends HttpServlet {
           case "/usr/article/list" -> articleController.showList(rq);
           case "/usr/article/detail" -> articleController.showDetail(rq);
           case "/usr/article/modify" -> articleController.showModify(rq);
+          case "/usr/article/delete" -> articleController.doDelete(rq);
           case "/usr/member/join" -> memberController.showJoin(rq);
         }
+        break;
       case "POST":
         switch (rq.getActionPath()) {
           case "/usr/article/write" -> articleController.doWrite(rq);
           case "/usr/article/modify" -> articleController.doModify(rq);
         }
+        break;
     }
-  }
-
-  @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    doGet(req, resp);
   }
 }
