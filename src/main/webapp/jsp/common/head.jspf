@@ -9,15 +9,43 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>JSP 게시판</title>
+
+  <!-- daisy UI 불러오기 -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+
+  <!-- 테일윈드 css 적용 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-  <!-- site-wrap은 전체를 감싸는 용도 -->
-  <div class="site-wrap">
-    <header class="top-bar">
-      <div class="container">
-        헤더
+  <style>
+    @font-face {
+      font-family: 'GmarketSansMedium';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    html > body {
+      font-family: 'GmarketSansMedium' !important;
+      text-underline-position: under;
+    }
+  </style>
+
+  <!-- 네비게이션 바 -->
+  <div class="site-wrap h-screen flex flex-col">
+    <header class="top-bar bg-base-100 shadow-lg h-[80px]">
+      <div class="con mx-auto h-full flex px-[1.5rem]">
+        <div class="logo-box flex items-center">
+          <a href="/" class="btn btn-ghost normal-case text-xl">HOME</a>
+        </div>
+        <nav class="menu-bar ml-auto">
+          <ul class="flex h-full">
+            <li><a href="/usr/article/write" class="flex items-center h-full px-[1.2rem]">게시물 작성</a></li>
+            <li><a href="/usr/article/list" class="flex items-center h-full px-[1.2rem]">게시물 리스트</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
 
-  </div>
-
+    <!-- 메인 컨텐츠 -->
+    <main class="main-content flex-grow">

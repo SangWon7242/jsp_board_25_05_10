@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+    </main>
+    <!-- 푸터 -->
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+      <div>
+        <p>Copyright © 2025 - All rights reserved</p>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
