@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
+<c:set var="pageTitle" value="JSP 게시물 상세보기" />
+
 <%@ include file="../../common/head.jspf" %>
 
 <div class="container mx-auto px-4 py-8 max-w-4xl">

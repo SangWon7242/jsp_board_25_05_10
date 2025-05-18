@@ -2,6 +2,8 @@
 <!-- Jakarta EE 9+ 새로운 방식 -->
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
+<c:set var="pageTitle" value="JSP 게시물 작성" />
+
 <%@ include file="../../common/head.jspf" %>
 
 <script>
