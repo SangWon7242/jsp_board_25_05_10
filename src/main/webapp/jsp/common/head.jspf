@@ -13,6 +13,9 @@
   <!-- JQuery 불러오기  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+  <!-- Font Awesome 불러오기 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <!-- daisy UI 불러오기 -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 
@@ -34,8 +37,30 @@
         </div>
         <nav class="menu-bar ml-auto">
           <ul class="flex h-full">
-            <li><a href="/usr/article/write" class="flex items-center h-full px-[1.2rem]">게시물 작성</a></li>
-            <li><a href="/usr/article/list" class="flex items-center h-full px-[1.2rem]">게시물 리스트</a></li>
+            <li>
+              <a href="/usr/article/write" class="flex items-center h-full px-[1.2rem] hover:text-red-300">
+                <i class="fas fa-pen-to-square mr-2"></i>
+                <span>게시물 작성</span>
+              </a>
+            </li>
+            <li>
+              <a href="/usr/article/list" class="flex items-center h-full px-[1.2rem] hover:text-red-300">
+                <i class="fas fa-list mr-2"></i>
+                <span>게시물 리스트</span>
+              </a>
+            </li>
+            <li>
+              <a href="/usr/member/login" class="flex items-center h-full px-[1.2rem] hover:text-red-300">
+                <i class="fas fa-right-to-bracket mr-2"></i>
+                <span>로그인</span>
+              </a>
+            </li>
+            <li>
+              <a href="/usr/member/join" class="flex items-center h-full px-[1.2rem] hover:text-red-300">
+                <i class="fas fa-user-plus mr-2"></i>
+                <span>회원 가입</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
