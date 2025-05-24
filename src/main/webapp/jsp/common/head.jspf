@@ -77,10 +77,11 @@
                 </a>
               </li>
               <li>
-                <a href="/usr/member/logout" class="flex items-center h-full px-[1.2rem] hover:text-red-300">
+                <a onclick="$(this).next().submit();" class="flex items-center h-full px-[1.2rem] hover:text-red-300">
                   <i class="fas fa-right-from-bracket mr-2"></i>
                   <span>로그아웃</span>
                 </a>
+                <form hidden method="POST" action="/usr/member/logout" ></form>
               </li>
             </c:if>
           </ul>
