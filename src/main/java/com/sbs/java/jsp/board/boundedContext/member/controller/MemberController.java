@@ -49,4 +49,8 @@ public class MemberController {
 
     rq.replace("'%s'님 회원 가입 되었습니다.".formatted(username), "/");
   }
+
+  public void showLogin(Rq rq) {
+    rq.view("usr/member/login");
+  }
 }
