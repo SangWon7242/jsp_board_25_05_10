@@ -4,6 +4,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -11,11 +12,13 @@ import java.io.UnsupportedEncodingException;
 public class Rq {
   private final HttpServletRequest req;
   private final HttpServletResponse resp;
+  private final HttpSession session;
 
   public Rq(HttpServletRequest req, HttpServletResponse resp) {
     this.req = req;
     this.resp = resp;
-
+    this.session = req.getSession(); // 세션을 가져옴
+    
     try {
       req.setCharacterEncoding("UTF-8"); // 들어오는 데이터를 UTF-8로 해석
     } catch (UnsupportedEncodingException e) {
@@ -136,5 +139,9 @@ public class Rq {
     } catch (ArrayIndexOutOfBoundsException e) {
       return defaultValue;
     }
+  }
+
+  public void setSessionAttr(String attrName, Object value) {
+    session.setAttribute(attrName, value);
   }
 }
