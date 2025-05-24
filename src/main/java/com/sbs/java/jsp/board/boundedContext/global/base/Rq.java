@@ -103,6 +103,14 @@ public class Rq {
     return req.getMethod();
   }
 
+  public String getRoutedMethod() {
+    String method = getParam("_method", "");
+
+    if(!method.isEmpty()) return method.toUpperCase();
+
+    return req.getMethod();
+  }
+
   public String getActionPath() {
     String[] bits = req.getRequestURI().split("/");
     return "/%s/%s/%s".formatted(bits[1], bits[2], bits[3]);
